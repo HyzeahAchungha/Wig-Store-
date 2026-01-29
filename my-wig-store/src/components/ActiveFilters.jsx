@@ -1,0 +1,50 @@
+import React from "react";
+import { X } from "lucide-react";
+
+const ActiveFilters = ({
+  selectedType,
+  setSelectedType,
+  selectedColor,
+  setSelectedColor,
+  selectedLength,
+  setSelectedLength
+}) => {
+ const hasActiveFilters = selectedType !== 'All' || selectedColor !== 'All' || selectedLength !== 'All';
+
+  if (!hasActiveFilters) return null;
+
+  return (
+    <div className="mb-6 flex flex-wrap gap-3">
+      <span className="text-sm font-semibold text-gray-600">Active Filters:</span>
+      {selectedType !== 'All' && (
+        <span className="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2">
+          Type: {selectedType}
+          <button onClick={() => setSelectedType('All')} className="hover:text-pink-900">
+            <X className="w-3 h-3" />
+          </button>
+        </span>
+      )}
+      {selectedColor !== 'All' && (
+        <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2">
+          Color: {selectedColor}
+          <button onClick={() => setSelectedColor('All')} className="hover:text-purple-900">
+            <X className="w-3 h-3" />
+          </button>
+        </span>
+      )}
+      {selectedLength !== 'All' && (
+        <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2">
+          Length: {selectedLength}
+          <button onClick={() => setSelectedLength('All')} className="hover:text-blue-900">
+            <X className="w-3 h-3" />
+          </button>
+        </span>
+      )}
+    </div>
+  );
+};
+
+export default ActiveFilters;
+
+
+
